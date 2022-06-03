@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>0xHUG</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css'>
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- <div class="preloader-2">
+  <span class="line line-1">0</span>
+  <span class="line line-2">x</span>
+  <span class="line line-3">h</span>
+  <span class="line line-4">u</span>
+  <span class="line line-5">g</span>
+  
+</div> -->
+
+
+<!-- <div class="preloader">
+  
+  <span class="line line-1">0</span>
+  <span class="line line-2"></span>
+  <span class="line line-3">X</span>
+  <span class="line line-4"></span>
+  <span class="line line-5">H</span>
+  <span class="line line-6"></span>
+  <span class="line line-7">U</span>
+  <span class="line line-8"></span>
+  <span class="line line-9">G</span> -->
+<!-- </div> --> 
+
+<script type="x-shader/x-vertex" id="vertexshader">
+  attribute float size;
+  attribute vec3 customColor;
+  varying vec3 vColor;
+
+  void main() {
+    vColor = customColor;
+    vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+    gl_PointSize = size * ( 300.0 / -mvPosition.z );
+    gl_Position = projectionMatrix * mvPosition;
+  }
+
+</script>
+<script type="x-shader/x-fragment" id="fragmentshader">
+ uniform vec3 color;
+ uniform sampler2D pointTexture;
+
+ varying vec3 vColor;
+
+ void main() {
+
+   gl_FragColor = vec4( color * vColor, 1.0 );
+   gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+
+ }
+</script>
+
+
+
+<div class="hero">
+      <div id="magic"></div>
+        <div class="playground">
+        <div class="bottomPosition">
+          <h1 class="special">We are community builders of Web3 <br>& upcoming metaverses</h1> 
+        </div>
+      </div>
+</div>
+
+      
+<div class="main-container">
+  <div class="frame frame-left">
+    <a class="navbar-toggle" href="#">
+      <i class="fas fa-bars"></i> 
+      <span class="menu-text">
+        Menu
+      </span>
+    </a>
+    <div class="overlay">
+      <div class="overlay-row">
+        <div class="overlay-content">
+          <div class="overlay-content-inner">
+            <a href="#">About.</a>
+            <a href="#">Projects.</a>
+            <a href="#">Contact.</a>
+          </div>
+        </div>
+        <div class="overlay-colour">
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="frame frame-right">
+  <div class="social-media">
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  <a href="#"><i class="fa-brands fa-discord"></i></a>
+  </div>
+  </div>
+  
+<div class="frame frame-top">
+  <a href="#" class="navbar-brand">
+    <h5>0xHUG</h5>
+  </a>
+  <a class="navbar-toggle" href="#">
+    <i class="fas fa-bars"></i> 
+    <span class="menu-text">
+      Menu
+    </span>
+  </a>
+  <div class="overlay">
+    <div class="overlay-row">
+      <div class="overlay-content">
+        <div class="overlay-content-inner">
+          <a href="#">About.</a>
+          <a href="#">Projects.</a>
+          <a href="#">Contact.</a>
+        </div>
+      </div>
+      <div class="overlay-colour">
+      </div>
+    </div>
+  </div>
+  </div>
+<div class="frame frame-bottom">
+  </div>
+  <div class="content-wrapper">
+    <div class="inner-content-wrapper">
+      
+      
+      <!-- /hello-wrapper -->
+        
+      <div class="what">
+        <h2>what we do</h2>
+        <p>we do things:) </p>
+        <p>this can be a written discription or cards?
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="scroll-animations">
+      <div class="team-container">
+        <h4>our team</h4>
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>0xhug</h2>
+              <h3>@think_flexible</h3>
+              <p>Crypto native builder, investor, and NFT collector. Supporting 0xHUG builders 😎</p>
+              <ul class="sci">
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>0xhug</h2>
+              <h3>@y_kymin</h3>
+              <p>Avid NFT collector and dabbler in games. Supporting 0xHUG builders 😊</p>
+              <ul class="sci">
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>0xhug</h2>
+              <h3>@grindin</h3>
+              <p>The OG Capsule House (29k Twitter & 16k Discord) community manager. Also a mod for GenerativeMasks. Master of all things Discord. 😉</p>
+              <ul class="sci">
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>0xhug</h2>
+              <h3>@LiquidEggWhite</h3>
+              <p>Manager of Archan Nair & Stampu (33k Twitter). Our in-house MEME lord. 😈</p>
+              <ul class="sci">
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>0xhug</h2>
+              <h3>@jboy</h3>
+              <p>Community manager for Gharliera/GENE_SIS (163k Twitter & 60k Discord), proud owner of a moonbird 😄</p>
+              <ul class="sci">
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>0xhug</h2>
+              <h3>@bobolaile</h3>
+              <p>Crypto native dev & trader 📉</p>
+              <ul class="sci">
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>0xhug</h2>
+              <h3>@michellettc</h3>
+              <p>All things graphic design. Working with 0xHUG to create the most exquisite graphics and videos 🎬</p>
+              <ul class="sci">
+                <li style="--i:1">
+                  <a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i:3">
+                  <a href="#"><i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="l-container">  
+        <h4>projects</h4>
+        <div class="b-game-card">  
+         <div class="b-game-card__cover" style="background-image: url(AltavaGroup_LogoMark_onLight.png);"></div>  
+        </div>  
+        <div class="b-game-card">  
+         <div class="b-game-card__cover" style="background-image: url(./Humxn.png);"></div>  
+        </div>  
+        <!-- <div class="b-game-card">  
+         <div class="b-game-card__cover" style="background-image: url(https://stickershop.line-scdn.net/stickershop/v1/product/1662724/LINEStorePC/main.png;compress=true);"></div>  
+        </div>  
+          -->
+       </div> 
+      
+        <footer>
+          <p>
+          Get in touch - <a href="#">email@email.com</a>
+        </p>
+        </footer><!-- /footer -->
+      </div><!-- /scroll-animations -->
+    </div><!-- /content-container -->
+    
+  </div><!-- /content-wrapper -->
+</div><!-- /main-container -->
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script src='https://kit.fontawesome.com/658d79202e.js'></script>
+<script src="https://kit.fontawesome.com/24cb3a0564.js" crossorigin="anonymous"></script>
+<script  src="./script.js"></script>
+
+<script>
+  var loader = document.getElementsByClassName("preloader-2");
+
+  window.addEventListener("load", function(){
+    loader.style.display = "none";
+  })
+
+
+</script>
+
+
+</body>
+</html>
