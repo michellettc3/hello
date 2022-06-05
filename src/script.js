@@ -1,4 +1,5 @@
 
+
 //HERO PAGE
 
 const preload = () => {
@@ -465,53 +466,110 @@ for(let i = 0; i < helloLogoRect.length; i++){
 
 });
 
- 
+$(window).scroll(function() {
+	if ($(document).scrollTop() > 50) {
+		$('.nav').addClass('affix');
+		console.log("OK");
+	} else {
+		$('.nav').removeClass('affix');
+	}
+});
 
-
-
-$(document).ready(function() {
-  // Check if element is scrolled into view
-  function isScrolledIntoView(elem) {
-    var docViewTop = $(window).scrollTop();
-    var docViewBottom = docViewTop + $(window).height();
-
-    var elemTop = $(elem).offset().top;
-    var elemBottom = elemTop + $(elem).height();
-
-    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-  }
-  // If element is scrolled into view, fade it in
-  $(window).scroll(function() {
-    $('.scroll-animations .animated').each(function() {
-      if (isScrolledIntoView(this) === true) {
-        $(this).addClass('slideInUp');
-        $(this).css('opacity', '1');
-      }
-    });
-    
-  });
-  $(".navbar-toggle").click(function(){
-        $(".overlay").toggleClass('overlay-show');
-       $('.frame').toggleClass('move-in-menu');
-    $('.overlay-content-inner').toggleClass('show-content');
-    $("body").toggleClass('fix-body-height');
-     $(".overlay-colour").toggleClass('clicked');
-    });
+$('.navTrigger').click(function () {
+    $(this).toggleClass('active');
+    console.log("Clicked menu");
+    $("#mainListDiv").toggleClass("show_list");
+    $("#mainListDiv").fadeIn();
 
 });
 
-const preloader = document.querySelector('.preloader');
 
-const fadeEffect = setInterval(() => {
-  // if we don't set opacity 1 in CSS, then   //it will be equaled to "", that's why we   // check it
-  if (!preloader.style.opacity) {
-    preloader.style.opacity = 1;
-  }
-  if (preloader.style.opacity > 0) {
-    preloader.style.opacity -= 0.1;
-  } else {
-    clearInterval(fadeEffect);
-  }
-}, 0);
+const cursor = document.querySelector('#cursor');
+const cursorCircle = cursor.querySelector('.cursor__circle');
 
-window.addEventListener('load', fadeEffect);
+const mouse = { x: -100, y: -100 }; // mouse pointer's coordinates
+const pos = { x: 0, y: 0 }; // cursor's coordinates
+const speed = 0.1; // between 0 and 1
+
+const updateCoordinates = e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+}
+
+window.addEventListener('mousemove', updateCoordinates);
+
+
+function getAngle(diffX, diffY) {
+  return Math.atan2(diffY, diffX) * 180 / Math.PI;
+}
+
+function getSqueeze(diffX, diffY) {
+  const distance = Math.sqrt(
+    Math.pow(diffX, 2) + Math.pow(diffY, 2)
+  );
+  const maxSqueeze = 0.15;
+  const accelerator = 1500;
+  return Math.min(distance / accelerator, maxSqueeze);
+}
+
+
+const updateCursor = () => {
+  const diffX = Math.round(mouse.x - pos.x);
+  const diffY = Math.round(mouse.y - pos.y);
+  
+  pos.x += diffX * speed;
+  pos.y += diffY * speed;
+  
+  const angle = getAngle(diffX, diffY);
+  const squeeze = getSqueeze(diffX, diffY);
+  
+  const scale = 'scale(' + (1 + squeeze) + ', ' + (1 - squeeze) +')';
+  const rotate = 'rotate(' + angle +'deg)';
+  const translate = 'translate3d(' + pos.x + 'px ,' + pos.y + 'px, 0)';
+
+  cursor.style.transform = translate;
+  cursorCircle.style.transform = rotate + scale;
+};
+
+function loop() {
+  updateCursor();
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+
+
+
+const cursorModifiers = document.querySelectorAll('[cursor-class]');
+
+cursorModifiers.forEach(curosrModifier => {
+  curosrModifier.addEventListener('mouseenter', function() {
+    const className = this.getAttribute('cursor-class');
+    cursor.classList.add(className);
+  });
+  
+  curosrModifier.addEventListener('mouseleave', function() {
+    const className = this.getAttribute('cursor-class');
+    cursor.classList.remove(className);
+  });
+});
+
+$(window).scroll(function(){
+	scroll();
+  });
+  
+  scroll();
+  
+  function scroll(){
+	var top = $('html, body').scrollTop();
+	var el = $("#distort").find("feDisplacementMap");
+	
+	el.attr('scale', top);
+	$("h1").css('opacity', 1 - (top * 0.007))
+  }
+
+  function menuOnClick() {
+	document.getElementById("menu-bar").classList.toggle("change");
+	document.getElementById("burger").classList.toggle("change");
+	document.getElementById("menu-bg").classList.toggle("change-bg");
+  }

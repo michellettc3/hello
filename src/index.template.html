@@ -62,90 +62,94 @@
 </script>
 
 
+<canvas class="js-canvas"></canvas>
+
+<nav class="nav">
+  <div class="container">
+    <div class="logo">
+      <a href="#" class="navbar-brand">
+        0xhug
+      </a>
+    </div>
+    <div id="mainListDiv" class="main_list">
+      <ul class="navlinks">
+        <li><a href="https://twitter.com/0xHug"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-discord"></i></a></li>
+
+        <div class="menu-bg" id="menu-bg"></div>
+        <div id="menu">
+         <div id="menu-bar" onclick="menuOnClick()">
+        <div id="bar1" class="bar"></div>
+        <div id="bar2" class="bar"></div>
+        <div id="bar3" class="bar"></div>
+      </div>
+      <nav class="burger" id="burger">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      </div>
+      </ul>
+      
+    </div>
+    <div id="menu">
+      
+    </div>
+    
+    <div class="menu-bg" id="menu-bg"></div>
+    <span class="navTrigger">
+      <i></i>
+      <i></i>
+      <i></i>
+    </span>
+  </div>
+</nav>
+
+
+
 
 <div class="hero">
       <div id="magic"></div>
         <div class="playground">
         <div class="bottomPosition">
+          <svg xmlns="http://www.w3.org/2000/svg"
+     version="1.1">
+    <defs>
+        <filter id="distort">
+          <feTurbulence baseFrequency="0.015" 
+                          numOctaves="3" 
+                          result="warp" 
+                          type="fractalNoise">
+          </feTurbulence>
+          
+				  <feDisplacementMap in="SourceGraphic" 
+                             in2="warp" 
+                             scale="0" 
+                             xChannelSelector="R" 
+                             yChannelSelector="B">
+          </feDisplacementMap>
+        </filter>
+    </defs>
+</svg>
           <h1 class="special">We are community builders of Web3 <br>& upcoming metaverses</h1> 
         </div>
       </div>
 </div>
 
-      
-<div class="main-container">
-  <div class="frame frame-left">
-    <a class="navbar-toggle" href="#">
-      <i class="fas fa-bars"></i> 
-      <span class="menu-text">
-        Menu
-      </span>
-    </a>
-    <div class="overlay">
-      <div class="overlay-row">
-        <div class="overlay-content">
-          <div class="overlay-content-inner">
-            <a href="#">About.</a>
-            <a href="#">Projects.</a>
-            <a href="#">Contact.</a>
-          </div>
-        </div>
-        <div class="overlay-colour">
-        </div>
-      </div>
-    </div>
-  </div>
-<div class="frame frame-right">
-  <div class="social-media">
-    <a href="#"><i class="fab fa-twitter"></i></a>
-  <a href="#"><i class="fa-brands fa-discord"></i></a>
-  </div>
-  </div>
-  
-<div class="frame frame-top">
-  <a href="#" class="navbar-brand">
-    <h5>0xHUG</h5>
-  </a>
-  <a class="navbar-toggle" href="#">
-    <i class="fas fa-bars"></i> 
-    <span class="menu-text">
-      Menu
-    </span>
-  </a>
-  <div class="overlay">
-    <div class="overlay-row">
-      <div class="overlay-content">
-        <div class="overlay-content-inner">
-          <a href="#">About.</a>
-          <a href="#">Projects.</a>
-          <a href="#">Contact.</a>
-        </div>
-      </div>
-      <div class="overlay-colour">
-      </div>
-    </div>
-  </div>
-  </div>
-<div class="frame frame-bottom">
-  </div>
-  <div class="content-wrapper">
-    <div class="inner-content-wrapper">
-      
-      
-      <!-- /hello-wrapper -->
-        
-      <div class="what">
+<div id="about" class="what">
         <h2>what we do</h2>
         <p>we do things:) </p>
         <p>this can be a written discription or cards?
         </p>
-      </div>
-    </div>
+</div>
 
-    <div class="content-container">
-      <div class="scroll-animations">
-      <div class="team-container">
-        <h4>our team</h4>
+
+
+
+<div class="team-container">
+    <h4>our team</h4>
         <div class="card">
           <div class="box">
             <div class="content">
@@ -272,13 +276,13 @@
 
       </div>
 
-      <div class="l-container">  
+      <div id="work" class="project-container">  
         <h4>projects</h4>
-        <div class="b-game-card">  
-         <div class="b-game-card__cover" style="background-image: url(AltavaGroup_LogoMark_onLight.png);"></div>  
+        <div class="project-card">  
+         <div class="project-card__cover" style="background-image: url(AltavaGroup_LogoMark_onLight.png);"></div>  
         </div>  
-        <div class="b-game-card">  
-         <div class="b-game-card__cover" style="background-image: url(./Humxn.png);"></div>  
+        <div class="project-card">  
+         <div class="project-card__cover" style="background-image: url(./Humxn.png);"></div>  
         </div>  
         <!-- <div class="b-game-card">  
          <div class="b-game-card__cover" style="background-image: url(https://stickershop.line-scdn.net/stickershop/v1/product/1662724/LINEStorePC/main.png;compress=true);"></div>  
@@ -287,16 +291,27 @@
        </div> 
       
         <footer>
-          <p>
-          Get in touch - <a href="#">email@email.com</a>
+          <p id="contact">
+          Get in touch - DM on Twitter <a href="https://twitter.com/0xHug"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
         </p>
         </footer><!-- /footer -->
+        
+
+
       </div><!-- /scroll-animations -->
     </div><!-- /content-container -->
     
   </div><!-- /content-wrapper -->
 </div><!-- /main-container -->
 <!-- partial -->
+
+<div id="cursor">
+  <div class="cursor__circle"></div>
+</div>
+
+
+
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://kit.fontawesome.com/658d79202e.js'></script>
