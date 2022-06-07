@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>0xHUG</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css'>
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body id="preload">
+<!-- partial:index.partial.html -->
+<!-- <div class="preloader-2">
+  <span class="line line-1">0</span>
+  <span class="line line-2">x</span>
+  <span class="line line-3">h</span>
+  <span class="line line-4">u</span>
+  <span class="line line-5">g</span>
+  
+</div> -->
+
+
+<!-- <div class="preloader">
+  
+  <span class="line line-1">0</span>
+  <span class="line line-2"></span>
+  <span class="line line-3">X</span>
+  <span class="line line-4"></span>
+  <span class="line line-5">H</span>
+  <span class="line line-6"></span>
+  <span class="line line-7">U</span>
+  <span class="line line-8"></span>
+  <span class="line line-9">G</span> -->
+<!-- </div> --> 
+
+<script type="x-shader/x-vertex" id="vertexshader">
+  attribute float size;
+  attribute vec3 customColor;
+  varying vec3 vColor;
+
+  void main() {
+    vColor = customColor;
+    vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+    gl_PointSize = size * ( 300.0 / -mvPosition.z );
+    gl_Position = projectionMatrix * mvPosition;
+  }
+
+</script>
+<script type="x-shader/x-fragment" id="fragmentshader">
+ uniform vec3 color;
+ uniform sampler2D pointTexture;
+
+ varying vec3 vColor;
+
+ void main() {
+
+   gl_FragColor = vec4( color * vColor, 1.0 );
+   gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+
+ }
+</script>
+
+
+<canvas class="js-canvas"></canvas>
+
+<nav class="nav">
+  <div class="container">
+    <div class="logo">
+      <a href="#" class="navbar-brand">
+        0xhug
+      </a>
+    </div>
+    <div id="mainListDiv" class="main_list">
+      <ul class="navlinks">
+        <li><a href="https://twitter.com/0xHug"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-discord"></i></a></li>
+
+        <div class="menu-bg" id="menu-bg"></div>
+        <div id="menu">
+         <div id="menu-bar" onclick="menuOnClick()">
+        <div id="bar1" class="bar"></div>
+        <div id="bar2" class="bar"></div>
+        <div id="bar3" class="bar"></div>
+      </div>
+      <nav class="burger" id="burger">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      </div>
+      </ul>
+      
+    </div>
+    <div id="menu">
+      
+    </div>
+    
+    <div class="menu-bg" id="menu-bg"></div>
+    <span class="navTrigger">
+      <i></i>
+      <i></i>
+      <i></i>
+    </span>
+  </div>
+</nav>
+
+
+
+
+<div class="hero">
+      <div id="magic"></div>
+        <div class="playground">
+        <div class="bottomPosition">
+          <svg xmlns="http://www.w3.org/2000/svg"
+     version="1.1">
+    <defs>
+        <filter id="distort">
+          <feTurbulence baseFrequency="0.015" 
+                          numOctaves="3" 
+                          result="warp" 
+                          type="fractalNoise">
+          </feTurbulence>
+          
+				  <feDisplacementMap in="SourceGraphic" 
+                             in2="warp" 
+                             scale="0" 
+                             xChannelSelector="R" 
+                             yChannelSelector="B">
+          </feDisplacementMap>
+        </filter>
+    </defs>
+</svg>
+          <h1 class="special">Passionate Web3 community buildings <br> sending good vibes one hug at a time</h1> 
+        </div>
+      </div>
+</div>
+
+<div id="about" class="what">
+        <h4 >We are a group of experienced multi-lingo community builders passionate about nurturing culture and friendship in the metaverse. We help Web3 ventures build communities, facillitate marketing and social media strategies and hug their communities.</h4>
+        <div class="about-text-left">
+          <h5 class="gs_reveal">Community Building</h5>
+
+          <div class="sub-text" >
+            <p class="gs_reveal">We provide end-to-end service for community management - from setting up customized discord, implementing security measurement, to onboarding moderators and ongoing facilitation of community activities.
+          Well-versed in global culture, Our multiple lingo team members can tap into international communities with ease.</p></div>
+          </div>
+        <div class="about-text-right">
+          <h5 class="gs_reveal">Marketing & Social Media </h5>
+        <div class="sub-text">
+          <p class="gs_reveal">We tailor marketing and social media strategies based on your preference and goals. Whether your vibe is max meme or academia papers, we’ve got you covered. 
+          Our in-house experts will facilitate your social media calendar and content creation on demand. 
+          </p></div>
+        </div>
+        <div class="about-text-left">
+          <h5 class="gs_reveal">NFT Launch Advisory</h5>
+        <div class="sub-text">
+          <p class="gs_reveal">New to web 3? No worries. Our experienced team members will help you navigate through the metaverse and provide the guidance you need along the way. 
+          </p></div>
+        </div>
+</div>
+
+
+
+
+<div class="team-container">
+    <h6 class="gs_reveal">Our Team</h6>
+    
+    
+
+    <div class="team">
+          
+          <div class="card">
+            <div class="avatar"><img src="./images/tom.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#">@think_flexible</a></h2>
+              <h3 class="position">Lead Advisor & Strategist</h3>
+            </div>
+            <div class="skills-container">
+              <p><br>Lead Advisor & Strategist at 0xHUG, Web3 Investor, Collector, member of Flamingo DAO, Red DAO, Neon DAO, and more </p>
+              <a href="https://twitter.com/think_flexible"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="avatar"><img src="./images/matt.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#"></a>@y_kymin</a></h2>
+              <h3 class="position">-</h3>
+            </div>
+            <div class="skills-container">
+              <p><br>Avid NFT collector and dabbler in games. Supporting 0xHUG builders </p>
+              <a href="https://twitter.com/y_kymin"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+           <div class="card">
+            <div class="avatar"><img src="./images/liquid.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#"></a>@egg_liquid</a></h2>
+              <h3 class="position">Chief Meme Officer </h3>
+            </div>
+            <div class="skills-container">
+              <p><br>Chief Meme Officer (CMO) of 0xHUG, Cat mom, Ex-J.P. Morgan, Penn graduate, software sales engineer irl, CMO of Stampu NFT </p>
+              <a href="https://twitter.com/egg_liquid"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="avatar"><img src="./images/grindin.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#"></a>@grind1n</a></h2>
+              <h3 class="position">-</h3>
+            </div>
+            <div class="skills-container">
+              <p><br>Previous healthcare PM. Community Lead of Capsule House and Secret Garden. Jpeg collector and crypto degen since 2017.</p>
+              <a href="https://twitter.com/grind1n"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+         
+
+          <div class="card">
+            <div class="avatar"><img src="./images/liquid.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#"></a>@jboy</a></h2>
+              <h3 class="position">-</h3>
+            </div>
+            <div class="skills-container">
+              <p><br>Previously community lead on GENE_SIS/ESION projects (225k/80k Twitter). The strongest diamond hands if you've ever seen one (i.e. has trouble taking profit). Somewhat multilingual. </p>
+              <a href="https://twitter.com/jboyxbt"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="avatar"><img src="./images/bobo.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#"></a>@bobolaile</a></h2>
+              <h3 class="position">-</h3>
+            </div>
+            <div class="skills-container">
+              <p><br>0xHUG's first intern, ex tradfi trader soon to be in defi </p>
+              <a href="https://twitter.com/bobolaile"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="avatar"><img src="./images/liquid.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#"></a>@michttc3</a></h2>
+              <h3 class="position">-</h3>
+            </div>
+            <div class="skills-container">
+              <p><br>All things graphic design. Working with 0xHUG to create the most exquisite graphics and videos </p>
+              <a href="https://twitter.com/michttc3"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="avatar"><img src="./images/niqueja.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#"></a>@Niqueja</a></h2>
+              <h3 class="position">Mod</h3>
+            </div>
+            <div class="skills-container">
+              <p><br>Founder of Celestials. Working with 0xHug as Moderator. Mod - @HUMXN. Alpha Lead - @WaifuMoeNFT. 
+              Shot Caller - @UnkaiUnknown & @TheTribe_NFT.  </p>
+              <a href="https://twitter.com/Niqueja18"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="avatar"><img src="./images/liquid.png" alt="Avatar"></div>
+            <div class="summary">
+              <h2><a href="#"></a>@Kazumi</a></h2>
+              <h3 class="position">Mod</h3>
+            </div>
+            <div class="skills-container">
+              <p><br>Government Official by day, JPEG flipper by night. Often known as the meme dealer or quiz master in Discord channels. Proud Capsule House and GENE_SIS lifetime supporter </p>
+              <a href="https://twitter.com/thekeenspartan"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          </div>
+
+      </div>
+
+
+
+
+
+
+      <section class="section-tours">  
+        <h6 class="gs_reveal">Projects</h6>
+        <div class="row" >
+           <div class="col">
+               <div class="card_project">
+                   <div class="card__side card__side--front">
+                       <div class="project-card__cover" style="background-image: url(AltavaGroup_LogoMark_onLight.png);"></div>
+                       <div class="card__text">
+                         FRONT</div>
+                   </div>
+                   <div class="card__side card__side--back card__side--back">
+                       <div class="card__text">Today’s most innovative luxury brands are leading the conversation into the metaverse, piloting with the world’s newest technologies to enable captivating story-telling through virtual and augmented experiences. ALTAVA is at the forefront of this revolution, offering partners a rich suite of capabilities: virtual assets and the worlds they live in, blockchain and crypto capabilities, NFTs focused on fashion and popular culture, and access to a unique gamified social platform, ALTAVA Worlds of You. ALTAVA is based in Singapore but mainly operated out of South Korea. <br><br>
+                        0xHUG role: 
+Marketing and social media management 
+NFT strategy advisory including but not limited to launch, roadmap and tokenomics
+Community management <br><br>
+<a href="https://twitter.com/altavagroup"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                       </div>
+                       
+                   </div>
+                </div> 
+           </div>
+           <div class="col">
+               <div class="card_project">
+                <div class="card__side card__side--front">
+                  <div class="project-card__cover" style="background-image: url(humxn.png);"></div>
+                  <div class="card__text">
+                    FRONT</div>
+              </div>
+              <div class="card__side card__side--back card__side--back">
+                  <div class="card__text">HUMXN is a collection of 10,000 unique, hyper-realistic "human" avatars who have adapted to the different worlds and environments they live in. They have been designed by @Grif who has directed branded films and created art for brands such as Apple, Nike, HP, Givenchy, & Louis Vuitton. The HUMXN project was incubated to explore what it means to have, not just a pfp, but an avatar that resembles our true selves in this world. Our hope is to encompass nature, beauty, love, loss, belonging, relativity, and evolution in its most raw form and move forward to see what awaits us beyond. We are just beginning. The HUMXNs are only just starting to understand what they are, what they can be, and the cosmic powers that entangles them all - and no one can stop them.<br><br>
+                    
+                    0xHUG role:
+                    Marketing and social media management 
+                    Partnership
+                    NFT strategy advisory including but not limited to launch, roadmap
+                    Community management<br><br><a href="https://twitter.com/_HUMXN_"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                    
+                   </div>
+                </div> 
+           </div>
+          
+     </section> 
+
+      <!-- <div id="work" class="project-container">  
+        <h4>projects</h4>
+        <div class="project-card">  
+         >  
+        </div>  
+        <div class="project-card">  
+         <div class="project-card__cover" style="background-image: url(./Humxn.png);"></div>  
+        </div>  
+        
+       </div>  -->
+      
+        <footer>
+          <h4 id="contact" class="gs_reveal">
+            Get in touch - DM on Twitter <a href="https://twitter.com/0xHug"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+          </4>
+        </footer><!-- /footer -->
+        
+
+
+      </div><!-- /scroll-animations -->
+    </div><!-- /content-container -->
+    
+  </div><!-- /content-wrapper -->
+</div><!-- /main-container -->
+<!-- partial -->
+
+<div id="cursor">
+  <div class="cursor__circle"></div>
+</div>
+
+
+
+
+<!-- Canvas Cursor -->
+<!-- <div class="white"></div>
+
+<canvas class="js-canvas"></canvas>
+ -->
+
+<!-- Preloader -->
+
+<div id="site-loader" class="loader">
+	<div class="loader-wrapper">
+		<p class="loader-text">0%</p>
+		<div class="loader-bar">
+			<span class="loader-progress">
+				<span></span>
+			</span>
+		</div>
+	</div>
+	<div class="loader-overlay u-absolute u-pos-tl u-fit"></div>
+</div>
+
+<div id="intro" class="blah">
+  <img class="js-img-load" src="#">
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js?r=5426'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollTrigger.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js'></script>
+<script src='https://kit.fontawesome.com/658d79202e.js'></script>
+<script src="https://kit.fontawesome.com/24cb3a0564.js" crossorigin="anonymous"></script>
+<script  src="./script.js"></script>
+
+
+
+</body>
+</html>

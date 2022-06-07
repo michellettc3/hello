@@ -1,3 +1,47 @@
+// ScrollTrigger
+		  function animateFrom(elem, direction) {
+			direction = direction || 1;
+			var x = 0,
+				y = direction * 100;
+			if(elem.classList.contains("gs_reveal_fromLeft")) {
+			  x = -100;
+			  y = 0;
+			} else if (elem.classList.contains("gs_reveal_fromRight")) {
+			  x = 100;
+			  y = 0;
+			}
+			elem.style.transform = "translate(" + x + "px, " + y + "px)";
+			elem.style.opacity = "0";
+			gsap.fromTo(elem, {x: x, y: y, autoAlpha: 0}, {
+			  duration: 1.25, 
+			  x: 0,
+			  y: 0, 
+			  autoAlpha: 1, 
+			  ease: "expo", 
+			  overwrite: "auto"
+			});
+		  }
+		  
+		  function hide(elem) {
+			gsap.set(elem, {autoAlpha: 0});
+		  }
+		  
+		  document.addEventListener("DOMContentLoaded", function() {
+			gsap.registerPlugin(ScrollTrigger);
+			
+			gsap.utils.toArray(".gs_reveal").forEach(function(elem) {
+			  hide(elem); // assure that the element is hidden when scrolled into view
+			  
+			  ScrollTrigger.create({
+				trigger: elem,
+				onEnter: function() { animateFrom(elem) }, 
+				onEnterBack: function() { animateFrom(elem, -1) },
+				onLeave: function() { hide(elem) } // assure that the element is hidden when scrolled into view
+			  });
+			});
+		  });
+		  
+
 
 
 //HERO PAGE
@@ -390,81 +434,9 @@ class CreateParticles {
 
 
 
-// Frames & Social Media
 
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-}
-const scrollContainer = document.querySelectorAll('.scroll-container');
-const scrollLeftContainer = document.querySelectorAll('.scroll-container-left')[0];
-const scrollRightContainer = document.querySelectorAll('.scroll-container-right')[0];
-window.addEventListener('load', () => {
-  
-  console.log('All assets are loaded');
-  
-    let loading = setTimeout(function(){
-    let videoContainer = document.getElementsByClassName('inner-content-wrapper')[0];
-    let outerVideoContainer = document.getElementsByClassName('frame');
-      let navbarToggle = document.getElementsByClassName('navbar-toggle')[0];
-      let socialMedia = document.getElementsByClassName('social-media')[0];
-      let navbarBrand = document.getElementsByClassName('navbar-brand')[0];
-      console.log(videoContainer);
-    
-    videoContainer.classList.add('content-loading-done');
-      navbarToggle.classList.add('move-in-from-left');
-      socialMedia.classList.add('move-in-from-right');
-      navbarBrand.classList.add('move-in-from-top');
-    outerVideoContainer[0].classList.add('frame-loading-done-left-right');
-      outerVideoContainer[1].classList.add('frame-loading-done-left-right');
-      outerVideoContainer[2].classList.add('frame-loading-done-up-down');
-      outerVideoContainer[3].classList.add('frame-loading-done-up-down');
 
-     
-      
-for(let i = 0; i < helloLogoRect.length; i++){
 
-  console.log(`Letter ${i} is ${helloLogoRect[i].getTotalLength()}`);
-  helloLogoRect[i].classList.add('hello-ready');
-}
-      helloLogoPath[0].classList.add('hello-ready');
-      helloLogoEllipse[0].classList.add('hello-ready');
-      scrollContainer[0].classList.add('hello-ready');
-      
-    }, 1000);
-  
-  window.onscroll = function changeClass(){
-    let scrollPosY = window.pageYOffset | document.body.scrollTop;
-    let helloWrapper = document.getElementsByClassName('hello-wrapper')[0];
-    let innerContentWrapper = document.getElementsByClassName('inner-content-wrapper')[0];
-    if(scrollPosY > 0) {
-          
-      helloWrapper.classList.add('hello-wrapper-onscroll');
-      innerContentWrapper.classList.add('inner-content-wrapper-scroll');
-      
-      scrollContainer[0].classList.remove('hello-ready');
-      scrollContainer[0].classList.add('scrolled');
-      scrollLeftContainer.classList.add('scrolled');
-      scrollRightContainer.classList.add('scrolled');
-      let scrollHeight = document.body.scrollHeight;
-      let totalHeight = window.scrollY + window.innerHeight;
-
-      if(totalHeight >= scrollHeight)
-      {
-        scrollLeftContainer.classList.remove('scrolled');
-        console.log('reached the bottom');
-      }
-    } else if(scrollPosY <= 0) {
-         helloWrapper.classList.remove('hello-wrapper-onscroll');
-      innerContentWrapper.classList.remove('inner-content-wrapper-scroll');
-      scrollContainer[0].classList.remove('scrolled');
-      scrollContainer[0].classList.add('hello-ready');
-      scrollContainer[0].classList.add('after-hello-loaded');
-      scrollLeftContainer.classList.remove('scrolled');
-      scrollRightContainer.classList.remove('scrolled');
-    }
-}
-
-});
 
 $(window).scroll(function() {
 	if ($(document).scrollTop() > 50) {
@@ -484,12 +456,18 @@ $('.navTrigger').click(function () {
 });
 
 
+
+
+
+//cursor
+
+
 const cursor = document.querySelector('#cursor');
 const cursorCircle = cursor.querySelector('.cursor__circle');
 
 const mouse = { x: -100, y: -100 }; // mouse pointer's coordinates
-const pos = { x: 0, y: 0 }; // cursor's coordinates
-const speed = 0.1; // between 0 and 1
+const pos = { x: 40, y: 40 }; // cursor's coordinates
+const speed = 0.7; // between 0 and 1
 
 const updateCoordinates = e => {
   mouse.x = e.clientX;
@@ -507,7 +485,7 @@ function getSqueeze(diffX, diffY) {
   const distance = Math.sqrt(
     Math.pow(diffX, 2) + Math.pow(diffY, 2)
   );
-  const maxSqueeze = 0.15;
+  const maxSqueeze = 0.80;
   const accelerator = 1500;
   return Math.min(distance / accelerator, maxSqueeze);
 }
@@ -554,6 +532,9 @@ cursorModifiers.forEach(curosrModifier => {
   });
 });
 
+
+
+//Text Distort
 $(window).scroll(function(){
 	scroll();
   });
@@ -568,8 +549,78 @@ $(window).scroll(function(){
 	$("h1").css('opacity', 1 - (top * 0.007))
   }
 
+  //Menu 
   function menuOnClick() {
 	document.getElementById("menu-bar").classList.toggle("change");
 	document.getElementById("burger").classList.toggle("change");
 	document.getElementById("menu-bg").classList.toggle("change-bg");
   }
+
+
+
+//   Preloader
+
+
+          // number of loaded images for preloader progress
+		  var loadedCount = 0; //current number of images loaded
+		  var imagesToLoad = $('.js-img-load').length; //number of slides with .bcg container
+		  var loadingProgress = 0; //timeline progress - starts at 0
+		   
+		  $('.js-img-load').imagesLoaded({
+			  
+		  }).progress( function( instance, image ) {
+			  loadProgress();
+		  });
+		   
+		  function loadProgress(imgLoad, image)
+		  {
+			  //one more image has been loaded
+			  loadedCount++;
+		   
+			  loadingProgress = (loadedCount/imagesToLoad);
+		   
+			  // GSAP tween of our progress bar timeline
+			  TweenLite.to(progressTl, 0.7, {progress:loadingProgress, ease:Linear.easeNone});
+		   
+		  }
+  
+		  //progress timeline
+		  var progressTl = new TimelineMax({
+			  paused: true,
+			  onUpdate: progressUpdate,
+			  onComplete: loadComplete
+		  });
+		   
+		  progressTl
+			  //tween the progress bar width
+			  .to($('.loader-progress span'), 1, {width:100, ease:Linear.easeNone});
+		   
+		  //as the progress bar width updates and grows we put the percentage loaded in the screen
+		  function progressUpdate()
+		  {
+			  //the percentage loaded based on the tween's progress
+			  loadingProgress = Math.round(progressTl.progress() * 100);
+		   
+			  //we put the percentage in the screen
+			  $(".loader-text").text(loadingProgress + '%');
+		   
+		  }
+  
+  
+		  function loadComplete() {
+			// preloader out
+			var preloaderOutTl = new TimelineMax();
+		 
+			preloaderOutTl
+			  .to($('.loader-wrapper'), 0.3, {autoAlpha: 0, ease:Back.easeInOut})
+			  .set($('body'), {className: '-=is-loading'})
+			  .set($('html'), {className: '+=is-intro-leave'})
+			  .set($('#intro'), {className: '+=is-loaded'})
+			  .to($('#site-loader'), 0.8, {yPercent: 100, ease:Power4.easeInOut})
+			  .set($('#site-loader'), {className: '+=is-hidden'});
+		 
+			return preloaderOutTl;
+		  }
+
+
+		  
